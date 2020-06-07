@@ -8,7 +8,7 @@ const productionConfig = (): ConnectionOptions => {
 
 const developmentConfig = (): ConnectionOptions => {
   return {
-    uri: 'mongodb://localhost:27017/drynk',
+    uri: process.env.MONGODB_URI,
     appendDatabaseEnvironment: true
   };
 };

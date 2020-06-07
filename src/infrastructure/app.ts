@@ -18,7 +18,9 @@ export class App {
   }
 
   async start(): Promise<http.Server> {
-    await DatabaseHelper.registerDatabase(dbConfig());
+    await DatabaseHelper.registerDatabase({
+      uri: 'mongodb://localhost:27017/sentiance-api'
+    });
     SentryFacade.registerSentry(sentryConfig());
 
     return new Server().build().listen(serverConfig().port);
