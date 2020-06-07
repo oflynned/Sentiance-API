@@ -1,3 +1,5 @@
+import moment from 'moment';
+
 export class TimeUtils {
   static isInDateStringForm(date: string): boolean {
     const yyyyMmDd = /^\d{4}[./-]\d{2}[./-]\d{2}$/;
@@ -18,14 +20,14 @@ export class TimeUtils {
       0
     );
 
-    if (isNaN(startDate.getTime())) {
+    if (!moment(date, 'YYYY-MM-DD', true).isValid()) {
       throw new Error('Date is invalid');
     }
 
     const endDate = new Date(
       parseInt(year),
       parseInt(month) - 1,
-      parseInt(day) + 1,
+      parseInt(day) + 1, // +1 day at 12am
       0,
       0,
       0,
