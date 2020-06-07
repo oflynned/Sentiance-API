@@ -1,6 +1,6 @@
 const config = require('./jest.config');
-config.testMatch = ['**/*.integration.ts'];
+config.testMatch = ['**/*.spec.ts'];
 
-console.info('Running integration tests ...\n');
+console.info('Running unit tests ...\n');
 
 module.exports = config;
