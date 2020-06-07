@@ -6058,10 +6058,10 @@ mongodb@^3.5.4, mongodb@^3.5.5:
   optionalDependencies:
     saslprep "^1.0.0"
 
-mongoize-orm@^1.0.6:
-  version "1.0.6"
-  resolved "https://registry.yarnpkg.com/mongoize-orm/-/mongoize-orm-1.0.6.tgz#84df02d7c0c81889fd4283a3f21eb82b843e9abe"
-  integrity sha512-aIb7JgxEULIQed5ChH+BcAgHjijhbswCYahdb1l72hzWlvYdzvgJXrUu/tc6JC0sM9b4bRyq74Waz2esVs7JvQ==
+mongoize-orm@^1.0.10:
+  version "1.0.10"
+  resolved "https://registry.yarnpkg.com/mongoize-orm/-/mongoize-orm-1.0.10.tgz#d484399ce15bb3ab623c7cd5b4ee8a5306814429"
+  integrity sha512-aurZQ3nWGp+9dXg74H6vrKNPCpzAlAKIey4cibWt9yV45ZVpUabtV8fUETqvcWJpncvVPOep/++dblzRvUcoTQ==
   dependencies:
     "@hapi/joi" "^17.1.1"
     "@types/bcrypt" "^3.0.0"
