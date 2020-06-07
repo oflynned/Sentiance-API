@@ -3,7 +3,6 @@ import { Application } from 'express';
 import { Server as HttpServer, createServer } from 'http';
 import { typeDefs } from './definitions';
 import { resolvers } from './resolvers';
-import { Environment } from '../../config/environment';
 
 export const graphql = (app: Application): HttpServer => {
   const apolloServer = new ApolloServer({
