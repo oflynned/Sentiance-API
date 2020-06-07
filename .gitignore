@@ -4,11 +4,9 @@
 .yalc/
 node_modules/
 coverage/
+dist/
 
-**/*/build/
-**/*/dist/
 **/*/secrets/
-**/*/coverage/
 
 yalc.lock
 yarn-error.log

@@ -26,3 +26,44 @@ yarn test
 yarn test:spec
 yarn test:integration
 ```
+
+#### Production access
+
+A Heroku app has been deployed so that you can just use Postman to make GraphQL queries. It's available here:
+
+https://mighty-tor-06298.herokuapp.com/graphql
+
+#### Queries
+
+##### Find by uid
+
+```graphql
+query {
+  getEventByUid(uid: "17237693-4a2b-4a18-8344-27a807895ed9") {
+    _id
+    type
+  }
+}
+```
+
+##### Find by pagination
+
+```graphql
+query {
+  getEvents(page: 0) {
+    _id
+    type
+  }
+}
+```
+
+##### Find relative to date
+
+```graphql
+query {
+  getEventsOnDate(date: "2017-09-25") {
+    _id
+    type
+  }
+}
+```
