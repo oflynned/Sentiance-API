@@ -40,7 +40,9 @@ export interface EventType extends BaseModelType {
 export class EventSchema extends Schema<EventType> {
   joiBaseSchema(): object {
     return {
-      type: Joi.string().required(),
+      type: Joi.string()
+        .valid('Stationary', 'Transport')
+        .required(),
       start: Joi.date().required(),
       end: Joi.date().required(),
       analysis_type: Joi.string().required(),
