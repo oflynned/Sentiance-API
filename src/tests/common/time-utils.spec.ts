@@ -18,6 +18,18 @@ describe('Time utils', () => {
   describe('#buildTimestampLimits', () => {
     const { startDate, endDate } = TimeUtils.buildTimestampLimits('2020-01-01');
 
+    it('should return object', () => {
+      const timestamp = TimeUtils.buildTimestampLimits('2020-01-01');
+      expect(typeof timestamp).toBe('object');
+    });
+
+    it('should return timestamp details', function() {
+      const timestamp = TimeUtils.buildTimestampLimits('2020-01-01');
+      expect(Object.keys(timestamp).length).toEqual(2);
+      expect(Object.keys(timestamp)).toContain('startDate');
+      expect(Object.keys(timestamp)).toContain('endDate');
+    });
+
     it('end date should be after start date', () => {
       expect(endDate.getTime() > startDate.getTime()).toBeTruthy();
       expect(endDate.getTime() - startDate.getTime()).toEqual(86400000);
