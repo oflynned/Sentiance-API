@@ -30,18 +30,16 @@ export const eventsQueryResolvers = {
   },
   getEventsOnDate: async (
     context: object,
-    args: { startDate: string }
+    args: { date: string }
   ): Promise<object[]> => {
-    if (!TimeUtils.isInDateStringForm(args.startDate)) {
+    if (!TimeUtils.isInDateStringForm(args.date)) {
       throw new BadRequestError(
         'Date should be passed in the format yyyy-mm-dd'
       );
     }
 
     try {
-      const { startDate, endDate } = TimeUtils.buildTimestampLimits(
-        args.startDate
-      );
+      const { startDate, endDate } = TimeUtils.buildTimestampLimits(args.date);
 
       const events: Event[] = await Event.findBetweenTimestamps(
         startDate,
