@@ -41,13 +41,5 @@ export class ExampleDataset extends Seed {
         }
       )
     );
-
-    // const a = eventHistory.reduce((acc: Set<string>, item: any) => {
-    //   const keys: string[] = Object.keys(item);
-    //   keys.map(key => acc.add(key));
-    //   return acc;
-    // }, new Set<string>());
-    //
-    // console.log(a);
   }
 }

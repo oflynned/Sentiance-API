@@ -44,11 +44,10 @@ export class EventSchema extends Schema<EventType> {
       start: Joi.date().required(),
       end: Joi.date().required(),
       analysis_type: Joi.string().required(),
-
       latitude: Joi.number(),
       longitude: Joi.number(),
       location: Joi.object({
-        significance: Joi.string().required()
+        significance: Joi.string()
       }),
       mode: Joi.string(),
       waypoints: Joi.array().items(
