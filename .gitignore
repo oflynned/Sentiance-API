@@ -1,0 +1,13 @@
+.env
+
+.idea/
+.yalc/
+node_modules/
+
+**/*/build/
+**/*/dist/
+**/*/secrets/
+**/*/coverage/
+
+yalc.lock
+yarn-error.log
