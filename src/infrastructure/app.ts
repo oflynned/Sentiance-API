@@ -2,13 +2,10 @@ require('dotenv').config();
 
 import * as http from 'http';
 import { Server } from './server';
+import { DatabaseHelper } from '../common/database';
 
-import { sentryConfig } from '../config/sentry.config';
 import { dbConfig } from '../config/database.config';
 import { serverConfig } from '../config/server.config';
-
-import { SentryFacade } from '../common/sentry';
-import { DatabaseHelper } from '../common/database';
 
 export class App {
   private constructor() {}
@@ -21,7 +18,6 @@ export class App {
     await DatabaseHelper.registerDatabase({
       uri: 'mongodb://localhost:27017/sentiance-api'
     });
-    SentryFacade.registerSentry(sentryConfig());
 
     return new Server().build().listen(serverConfig().port);
   }

@@ -5,7 +5,7 @@ import {
   Repository,
   Schema
 } from 'mongoize-orm';
-import { Analysis } from './moment.model';
+import { Analysis, Moment } from './moment.model';
 
 export type WaypointType = {
   type: string;
@@ -89,6 +89,12 @@ export class Event extends BaseDocument<EventType, EventSchema> {
 
   static async findById(uid: string): Promise<Event | undefined> {
     return Repository.with(Event).findById(uid);
+  }
+
+  async moments(): Promise<Moment[]> {
+    return Repository.with(Moment).findMany({
+      start: this.toJson().start
+    });
   }
 
   joiSchema(): EventSchema {

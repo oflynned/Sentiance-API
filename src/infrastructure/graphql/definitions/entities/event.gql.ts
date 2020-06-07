@@ -10,5 +10,6 @@ export const eventDefinition = gql`
     latitude: Float
     longitude: Float
     mode: String
+    moments: Moment
   }
 `;
