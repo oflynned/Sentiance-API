@@ -4,8 +4,8 @@ export const eventDefinition = gql`
   type Event {
     _id: ID!
     type: String
-    start: String
-    end: String
+    start: DateTime
+    end: DateTime
     analysis_type: String
     latitude: Float
     longitude: Float
