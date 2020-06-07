@@ -43,6 +43,8 @@
     "moment": "^2.26.0",
     "mongoize-orm": "^1.0.10",
     "morgan": "~1.9.1",
+    "ts-node": "^8.6.2",
+    "typescript": "^3.8.3",
     "typescript-logging": "^0.6.4"
   },
   "devDependencies": {
@@ -76,8 +78,6 @@
     "sort-package-json": "^1.35.0",
     "supertest": "^4.0.2",
     "ts-jest": "^25.1.0",
-    "ts-node": "^8.6.2",
-    "tslint-config-prettier": "^1.18.0",
-    "typescript": "^3.8.3"
+    "tslint-config-prettier": "^1.18.0"
   }
 }
