@@ -9,8 +9,10 @@ export const graphql = (app: Application): HttpServer => {
   const apolloServer = new ApolloServer({
     typeDefs,
     resolvers,
-    playground: Environment.isDevelopment(),
-    introspection: Environment.isDevelopment()
+    playground: true,
+    introspection: true
+    // playground: Environment.isDevelopment(),
+    // introspection: Environment.isDevelopment()
   });
   apolloServer.applyMiddleware({ app });
 
