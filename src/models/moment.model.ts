@@ -27,14 +27,14 @@ export type MomentDefinition =
   | 'commute_from_work'
   | 'dinner_out';
 
-export interface MomentHistoryType extends BaseModelType {
+export interface MomentType extends BaseModelType {
   start: Date;
   end: Date;
   analysis_type: Analysis;
   moment_definition_id: MomentDefinition;
 }
 
-export class MomentHistorySchema extends Schema<MomentHistoryType> {
+export class MomentSchema extends Schema<MomentType> {
   joiBaseSchema(): object {
     return {
       start: Joi.date().required(),
@@ -48,15 +48,8 @@ export class MomentHistorySchema extends Schema<MomentHistoryType> {
   }
 }
 
-export class MomentHistory extends BaseDocument<
-  MomentHistoryType,
-  MomentHistorySchema
-> {
-  collection(): string {
-    return 'moment_history';
-  }
-
-  joiSchema(): MomentHistorySchema {
-    return new MomentHistorySchema();
+export class Moment extends BaseDocument<MomentType, MomentSchema> {
+  joiSchema(): MomentSchema {
+    return new MomentSchema();
   }
 }

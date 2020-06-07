@@ -1,5 +1,11 @@
-import { BaseDocument, BaseModelType, Joi, Schema } from 'mongoize-orm';
-import { Analysis } from './moment-history.model';
+import {
+  BaseDocument,
+  BaseModelType,
+  Joi,
+  Repository,
+  Schema
+} from 'mongoize-orm';
+import { Analysis } from './moment.model';
 
 export type WaypointType = {
   type: string;
@@ -15,26 +21,23 @@ export type TrajectoryType = {
 };
 
 export type LocationType = {
-  type: string;
-  encoded: string;
+  significance: string;
 };
 
-export interface EventHistoryType extends BaseModelType {
+export interface EventType extends BaseModelType {
   type: string;
   start: Date;
   end: Date;
   analysis_type: Analysis;
   latitude?: number;
   longitude?: number;
-  location?: {
-    significance: string;
-  };
+  location?: LocationType;
   mode?: string;
   waypoints?: WaypointType[];
   trajectory?: TrajectoryType;
 }
 
-export class EventHistorySchema extends Schema<EventHistoryType> {
+export class EventSchema extends Schema<EventType> {
   joiBaseSchema(): object {
     return {
       type: Joi.string().required(),
@@ -65,15 +68,31 @@ export class EventHistorySchema extends Schema<EventHistoryType> {
   }
 }
 
-export class EventHistory extends BaseDocument<
-  EventHistoryType,
-  EventHistorySchema
-> {
-  collection(): string {
-    return 'event_history';
+export class Event extends BaseDocument<EventType, EventSchema> {
+  static async findBetweenTimestamps(
+    startDate: Date,
+    endDate: Date
+  ): Promise<Event[]> {
+    return Repository.with(Event).findMany(
+      {
+        start: { $gte: startDate, $lt: endDate }
+      },
+      { orderBy: { start: 1 } }
+    );
   }
 
-  joiSchema(): EventHistorySchema {
-    return new EventHistorySchema();
+  static async findWithPagination(
+    limit: number,
+    offset: number
+  ): Promise<Event[]> {
+    return Repository.with(Event).findMany({}, { limit, offset });
+  }
+
+  static async findById(uid: string): Promise<Event | undefined> {
+    return Repository.with(Event).findById(uid);
+  }
+
+  joiSchema(): EventSchema {
+    return new EventSchema();
   }
 }

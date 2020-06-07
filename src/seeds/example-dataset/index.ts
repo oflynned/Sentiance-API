@@ -1,7 +1,7 @@
 import dataset from './dataset.json';
 import { Seed } from '../seed.base';
-import { MomentHistory } from '../../models/moment-history.model';
-import { EventHistory } from '../../models/event-history.model';
+import { Moment } from '../../models/moment.model';
+import { Event } from '../../models/event.model';
 import { Segment } from '../../models/segment';
 import { Logger } from '../../common/logger';
 
@@ -18,8 +18,8 @@ export class ExampleDataset extends Seed {
     this.logger.info('Seeding moment history ...');
     await Promise.all(
       momentHistory.map(
-        (moment: object): Promise<MomentHistory> => {
-          return new MomentHistory().build(moment as any).save();
+        (moment: object): Promise<Moment> => {
+          return new Moment().build(moment as any).save();
         }
       )
     );
@@ -27,8 +27,8 @@ export class ExampleDataset extends Seed {
     this.logger.info('Seeding event history ...');
     await Promise.all(
       eventHistory.map(
-        (event: object): Promise<EventHistory> => {
-          return new EventHistory().build(event as any).save();
+        (event: object): Promise<Event> => {
+          return new Event().build(event as any).save();
         }
       )
     );
