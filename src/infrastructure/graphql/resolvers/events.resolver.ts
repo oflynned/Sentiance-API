@@ -19,11 +19,11 @@ export const eventsQueryResolvers = {
     context: object,
     args: { page: number }
   ): Promise<object[]> => {
-    if (args.page < 1) {
-      throw new BadRequestError('Page cannot be less than 1');
+    if (args.page < 0) {
+      throw new BadRequestError('Page cannot be less than 0');
     }
 
-    const limit = 50;
+    const limit = 10;
     const offset = args.page * limit;
     const events = await Event.findWithPagination(limit, offset);
     return events.map((event: Event) => event.toJson());

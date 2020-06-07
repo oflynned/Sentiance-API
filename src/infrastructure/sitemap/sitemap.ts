@@ -3,10 +3,6 @@ import { Application, NextFunction, Request, Response } from 'express';
 import indexRouter from '../routes';
 import fallbackRouter from '../routes/fallback.route';
 import { HttpError, HttpErrorType } from '../errors/http.error';
-import { Logger } from '../../common/logger';
-import { Environment } from '../../config/environment';
-
-const logger: Logger = Logger.getInstance('api.infrastructure.sitemap');
 
 export const sitemap = (app: Application): void => {
   app.use('/', indexRouter);
@@ -19,14 +15,8 @@ export const sitemap = (app: Application): void => {
       res: Response,
       next: NextFunction
     ) => {
-      if (Environment.isProduction()) {
-        if (internalError.status >= 500) {
-          // let's report to sentry instead of logging to the console
-          // SentryFacade.captureException(internalError);
-        }
-      } else {
-        console.error(internalError);
-      }
+      // would be better to log in sentry
+      console.error(internalError);
 
       // INFO HttpErrorType is used as it needs to extend `Error` for tests to accept a throw and here we need to infer some internal properties
       const error = internalError as HttpErrorType & any;

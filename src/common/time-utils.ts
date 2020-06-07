@@ -9,6 +9,10 @@ export class TimeUtils {
   static buildTimestampLimits(
     date: string
   ): { startDate: Date; endDate: Date } {
+    if (!moment(date, 'YYYY-MM-DD', true).isValid()) {
+      throw new Error('Date is invalid');
+    }
+
     const [year, month, day] = date.split('-');
     const startDate = new Date(
       parseInt(year),
@@ -19,10 +23,6 @@ export class TimeUtils {
       0,
       0
     );
-
-    if (!moment(date, 'YYYY-MM-DD', true).isValid()) {
-      throw new Error('Date is invalid');
-    }
 
     const endDate = new Date(
       parseInt(year),
