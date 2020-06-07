@@ -6,7 +6,7 @@ import { DatabaseHelper } from '../common/database';
 (async () => {
   // setup resource from config
   await DatabaseHelper.registerDatabase({
-    uri: 'mongodb://localhost:27017/sentiance-api'
+    uri: process.env.MONGODB_URI
   });
 
   // purge old datasets

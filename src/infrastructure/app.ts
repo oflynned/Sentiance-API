@@ -15,10 +15,7 @@ export class App {
   }
 
   async start(): Promise<http.Server> {
-    await DatabaseHelper.registerDatabase({
-      uri: 'mongodb://localhost:27017/sentiance-api'
-    });
-
+    await DatabaseHelper.registerDatabase(dbConfig());
     return new Server().build().listen(serverConfig().port);
   }
 }
